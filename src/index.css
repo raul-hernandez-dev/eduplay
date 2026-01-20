@@ -1,4 +1,83 @@
 @import "tailwindcss";
 
+/* Dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* Tema base */
+@theme {
+  /* Colores base */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-border: #e5e7eb;
 
+  /* Primary scale */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Brand */
+  --color-edu-blue: #4F46E5;
+  --color-edu-green: #10B981;
+  --color-edu-purple: #8B5CF6;
+  --color-edu-orange: #F59E0B;
+
+  /* Fonts */
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+}
+
+/* Dark theme overrides */
+.dark {
+  --color-background: #020617;
+  --color-foreground: #e5e7eb;
+  --color-border: #334155;
+}
+
+/* Base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-edu-blue to-edu-purple;
+  }
+}
