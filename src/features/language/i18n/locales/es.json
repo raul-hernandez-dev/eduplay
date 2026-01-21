@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "courses": "Cursos",
+    "about": "Nosotros",
+    "dashboard": "Dashboard",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "profile": "Mi Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión"
+  },
+  "footer": {
+    "description": "Plataforma educativa gamificada que hace del aprendizaje una experiencia divertida y memorable para niños de todas las edades.",
+    "features": "Características",
+    "pricing": "Precios",
+    "courses": "Cursos",
+    "updates": "Actualizaciones",
+    "about": "Nosotros",
+    "blog": "Blog",
+    "careers": "Trabajos",
+    "press": "Prensa",
+    "help": "Ayuda",
+    "contact": "Contacto",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "categories": {
+      "product": "Producto",
+      "company": "Compañía",
+      "support": "Soporte",
+      "social": "Social"
+    },
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "forEducation": "para la educación"
+  }
+}

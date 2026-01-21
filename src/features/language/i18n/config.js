@@ -2,23 +2,20 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Recursos de idioma
+// Importar recursos locales
+import esTranslation from './locales/es.json';
+import enTranslation from './locales/en.json';
+import ptTranslation from './locales/pt.json';
+
 const resources = {
   es: {
-    translation: {
-      welcome: "Bienvenido a Eduplay",
-      tagline: "Aprende jugando",
-      login: "Iniciar sesión",
-      register: "Registrarse",
-    }
+    translation: esTranslation
   },
   en: {
-    translation: {
-      welcome: "Welcome to Eduplay",
-      tagline: "Learn by playing",
-      login: "Login",
-      register: "Register",
-    }
+    translation: enTranslation
+  },
+  pt: {
+    translation: ptTranslation
   }
 };
 

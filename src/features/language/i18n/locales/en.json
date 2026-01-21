@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "about": "About",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "register": "Register",
+    "profile": "My Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "footer": {
+    "description": "Gamified educational platform that makes learning a fun and memorable experience for children of all ages.",
+    "features": "Features",
+    "pricing": "Pricing",
+    "courses": "Courses",
+    "updates": "Updates",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "press": "Press",
+    "help": "Help",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "categories": {
+      "product": "Product",
+      "company": "Company",
+      "support": "Support",
+      "social": "Social"
+    },
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "forEducation": "for education"
+  }
+}
