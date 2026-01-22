@@ -1,13 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppProviders from './app/providers/AppProviders';
 import RootLayout from './app/layouts/RootLayout';
+import ProtectedRoute from './features/auth/components/ProtectedRoute';
 import GuestRoute from './features/auth/components/GuestRoute';
 
 // Páginas públicas
 import LandingPage from './pages/public/LandingPage/LandingPage';
 import LoginPage from './pages/public/LoginPage/LoginPage';
+import RegisterPage from './pages/public/RegisterPage/RegisterPage';
 
-
+// Páginas protegidas
+import DashboardPage from './pages/protected/DashboardPage/DashboardPage';
 
 function App() {
   return (
@@ -28,7 +31,19 @@ function App() {
                 <LoginPage />
               </GuestRoute>
             } />
-
+            
+            <Route path="/register" element={
+              <GuestRoute>
+                <RegisterPage />
+              </GuestRoute>
+            } />
+            
+            {/* Rutas protegidas */}
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            } />
             
             {/* 404 */}
             <Route path="*" element={<div>404 - Página no encontrada</div>} />
