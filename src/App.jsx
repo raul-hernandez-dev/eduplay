@@ -4,6 +4,8 @@ import RootLayout from './app/layouts/RootLayout';
 import ProtectedRoute from './features/auth/components/ProtectedRoute';
 import GuestRoute from './features/auth/components/GuestRoute';
 
+import AuthCallbackPage from './pages/public/AuthCallbackPage/AuthCallbackPage';
+
 // Páginas públicas
 import LandingPage from './pages/public/LandingPage/LandingPage';
 import LoginPage from './pages/public/LoginPage/LoginPage';
@@ -47,6 +49,9 @@ function App() {
             
             {/* 404 */}
             <Route path="*" element={<div>404 - Página no encontrada</div>} />
+
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+
           </Route>
         </Routes>
       </AppProviders>

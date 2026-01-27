@@ -2,11 +2,15 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../../components/shared/Navbar/Navbar';
 import Footer from '../../components/shared/Footer/Footer';
 import { useTheme } from '../../features/theme/context/ThemeContext';
+import { useAuthSession } from '../../hooks/useAuthSession';
+
 
 const RootLayout = () => {
   const { mounted } = useTheme();
+  const { isLoading } = useAuthSession(); 
 
-  if (!mounted) {
+
+  if (!mounted || isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
