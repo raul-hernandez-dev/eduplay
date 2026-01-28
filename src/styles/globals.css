@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* Dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme */
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+
+  --color-primary: #3b82f6;
+  --color-secondary: #6b7280;
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+/* Dark overrides */
+.dark {
+  --color-background: #020617;
+  --color-foreground: #e5e7eb;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Transiciones SOLO donde tiene sentido */
+@layer utilities {
+  .theme-transition {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+}
