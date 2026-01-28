@@ -104,7 +104,16 @@ const LoginForm = ({ onSwitchToRegister }) => {
               />
             </div>
           </div>
-          
+
+          <div className="text-right">
+            <a
+              href="/forgot-password"
+              className="text-sm text-blue-600 hover:underline"
+            >
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
           <Recaptcha
             ref={recaptchaRef}
             onVerify={(token) => setCaptchaToken(token)}
