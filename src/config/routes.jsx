@@ -5,7 +5,7 @@ import Login from '../pages/public/Login';
 import Register from '../pages/public/Register';
 import Dashboard from '../pages/private/Dashboard';
 import AuthGuard from '../components/Auth/AuthGuard';
-
+import Profile from '../pages/private/Profile'
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +20,14 @@ export const router = createBrowserRouter([
         element: (
           <AuthGuard>
             <Dashboard />
+          </AuthGuard>
+        )
+      },
+      {
+        path: 'profile',
+        element: (
+          <AuthGuard>
+            <Profile />
           </AuthGuard>
         )
       }

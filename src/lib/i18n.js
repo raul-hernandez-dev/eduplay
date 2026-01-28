@@ -21,6 +21,7 @@ i18n
           light_mode: "Light Mode",
           home: "Home",
           dashboard: "Dashboard",
+          description: "Modern platform designed to offer a fast, secure, and efficient experience.",
         }
       },
       es: {
@@ -37,6 +38,7 @@ i18n
           light_mode: "Modo Claro",
           home: "Inicio",
           dashboard: "Panel",
+          description: "Plataforma moderna diseñada para ofrecer una experiencia rápida, segura y eficiente.",
         }
       }
     },
