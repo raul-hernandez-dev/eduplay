@@ -54,7 +54,9 @@ const PasswordFields = ({ onChange, error }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onBlur={() => setTouched(true)}
-          className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -65,7 +67,9 @@ const PasswordFields = ({ onChange, error }) => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           onBlur={() => setTouched(true)}
-          className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
