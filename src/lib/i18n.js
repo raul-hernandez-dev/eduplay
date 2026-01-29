@@ -46,7 +46,18 @@ i18n
           captcha_required: "Please verify the captcha",
           captcha_failed: "Captcha validation failed",
 
-          loading: "Loading..."
+          loading: "Loading...",
+
+          account_information: "Account Information",
+          provider: "Provider",
+          created_at: "Created at",
+          change_email: "Change email",
+          update_email: "Update email",
+          change_password: "Change password",
+          update_password: "Update password",
+          password_updated: "Password updated successfully",
+          email_update_confirmation: "Check your email to confirm the change",
+          password_invalid: "Password does not meet requirements",
         }
       },
       es: {

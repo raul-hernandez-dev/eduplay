@@ -59,6 +59,12 @@ export const AuthProvider = ({ children }) => {
     return { data, error };
   };
 
+  const updateEmail = async (newEmail) => {
+    const { data, error } = await supabase.auth.updateUser({
+      email: newEmail,
+    });
+    return { data, error };
+  };
 
   const value = {
     user,
@@ -68,6 +74,7 @@ export const AuthProvider = ({ children }) => {
     signOut,
     resetPassword,
     updatePassword,
+    updateEmail,
   };
 
   return (
