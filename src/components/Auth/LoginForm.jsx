@@ -18,13 +18,13 @@ const LoginForm = ({ onSwitchToRegister }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
 
     if (!captchaToken) {
-      setError(t('captcha_required') || 'Please verify the captcha');
-      setLoading(false);
+      setError(t('captcha_required'));
       return;
     }
+
+    setLoading(true);
 
     try {
       const res = await fetch(
@@ -42,17 +42,13 @@ const LoginForm = ({ onSwitchToRegister }) => {
       const captchaResult = await res.json();
 
       if (!res.ok || !captchaResult.success) {
-        throw new Error('Captcha validation failed');
+        throw new Error(t('captcha_failed'));
       }
 
       const { error } = await signIn(email, password);
-
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
     } catch (err) {
-      setError(err.message || 'Login failed');
-
+      setError(err.message || t('login_failed'));
       recaptchaRef.current?.reset();
       setCaptchaToken(null);
     } finally {
@@ -61,82 +57,89 @@ const LoginForm = ({ onSwitchToRegister }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+      <div className="w-full max-w-md">
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl px-8 py-10 space-y-6">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             {t('login')}
           </h2>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm">
               {error}
             </div>
           )}
-          <div className="rounded-md shadow-sm -space-y-px">
+
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {/* EMAIL */}
             <div>
-              <label htmlFor="email" className="sr-only">
-                {t('email')}
-              </label>
+              <label className="sr-only">{t('email')}</label>
               <input
-                id="email"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder={t('email')}
+                className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+
+            {/* PASSWORD */}
             <div>
-              <label htmlFor="password" className="sr-only">
-                {t('password')}
-              </label>
+              <label className="sr-only">{t('password')}</label>
               <input
-                id="password"
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-800 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder={t('password')}
+                className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-          </div>
 
-          <div className="text-right">
-            <a
-              href="/forgot-password"
-              className="text-sm text-blue-600 hover:underline"
+            {/* FORGOT PASSWORD */}
+            <div className="text-right">
+              <a
+                href="/forgot-password"
+                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                {t('forgot_password') || '¿Olvidaste tu contraseña?'}
+              </a>
+            </div>
+
+            <Recaptcha
+              ref={recaptchaRef}
+              onVerify={setCaptchaToken}
+              onExpired={() => setCaptchaToken(null)}
+            />
+
+            <button
+              type="submit"
+              disabled={loading || !captchaToken}
+              className="w-full py-2 px-4 rounded-md text-sm font-medium text-white
+                bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2
+                focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
             >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
+              {loading ? t('loading') : t('login')}
+            </button>
+          </form>
 
-          <Recaptcha
-            ref={recaptchaRef}
-            onVerify={(token) => setCaptchaToken(token)}
-            onExpired={() => setCaptchaToken(null)}
-          />
-          <button
-            type="submit"
-            disabled={loading || !captchaToken}
-            className="group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-          >
-            {loading ? 'Loading...' : t('login')}
-          </button>
-
-          <div className="text-center">
+          {/* FOOTER */}
+          <div className="text-center text-sm text-gray-600 dark:text-gray-300">
+            <span>{t('no_account') || '¿No tienes cuenta?'}</span>{' '}
             <button
               type="button"
               onClick={onSwitchToRegister}
-              className="text-blue-600 hover:text-blue-500 dark:text-blue-400"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
             >
               {t('register')}
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
