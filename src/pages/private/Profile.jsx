@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import PasswordFields from '../../components/PasswordFields';
 
 const Profile = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['auth','profile']);
   const { user, updateEmail, updatePassword } = useAuth();
 
   const [email, setEmail] = useState(user.email);
@@ -57,7 +57,7 @@ const Profile = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-8">
       <h1 className="text-3xl font-extrabold">
-        {t('profile')}
+        {t('profile:profile')}
       </h1>
 
       {(error || message) && (
@@ -75,19 +75,19 @@ const Profile = () => {
       {/* BASIC INFO */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-3">
         <h2 className="text-xl font-semibold">
-          {t('account_information')}
+          {t('profile:account_information')}
         </h2>
 
         <div className="text-sm text-gray-600 dark:text-gray-300">
           <p>
-            <strong>ID:</strong> {user.id}
+            <strong>{t('profile:id')}:</strong> {user.id}
           </p>
           <p>
-            <strong>{t('provider')}:</strong>{' '}
+            <strong>{t('profile:provider')}:</strong>{' '}
             {user.app_metadata?.provider || 'email'}
           </p>
           <p>
-            <strong>{t('created_at')}:</strong>{' '}
+            <strong>{t('profile:created_at')}:</strong>{' '}
             {new Date(user.created_at).toLocaleDateString()}
           </p>
         </div>

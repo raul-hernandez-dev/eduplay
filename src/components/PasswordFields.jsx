@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const PasswordFields = ({ onChange, error }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const passwordRules = [
     {

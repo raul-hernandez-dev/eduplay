@@ -6,7 +6,7 @@ import PasswordFields from '../../components/PasswordFields';
 import Recaptcha from '../../components/security/Recaptcha';
 
 const ResetPassword = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
   const { updatePassword } = useAuth();
   const navigate = useNavigate();
 
