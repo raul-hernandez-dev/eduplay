@@ -4,9 +4,9 @@ import { RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
-import './lib/i18n';
+import './config/i18n/i18n';
 import './styles/globals.css';
-import { router } from './config/routes';
+import { router } from './routes/routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
