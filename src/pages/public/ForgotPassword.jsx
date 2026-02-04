@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Recaptcha from '../../components/security/Recaptcha';
 
 const ForgotPassword = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
   const { resetPassword } = useAuth();
 
   const [email, setEmail] = useState('');

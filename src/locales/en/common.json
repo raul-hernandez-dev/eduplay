@@ -1,0 +1,13 @@
+{
+  "initial_message": "Please login or register to continue",
+  "welcome": "Welcome",
+  "loading": "Loading...",
+  "home": "Home",
+  "dashboard": "Dashboard",
+  "dark_mode": "Dark Mode",
+  "light_mode": "Light Mode",
+  "error_generic": "An unexpected error has occurred",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "description": "Modern platform designed to offer a fast, secure, and efficient experience."
+}

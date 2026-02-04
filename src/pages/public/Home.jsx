@@ -11,7 +11,7 @@ const Home = () => {
     <div className="text-center">
       <h1 className="text-4xl font-bold mb-6">{t('welcome')}</h1>
       <p className="text-lg mb-8">
-        {user ? `Welcome back, ${user.email}!` : 'Please login or register to continue.'}
+        {user ? `Welcome back, ${user.email}!` : t('initial_message')}
       </p>
       {!user && (
         <div className="space-x-4">

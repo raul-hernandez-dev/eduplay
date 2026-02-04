@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Recaptcha from '../security/Recaptcha';
 
 const LoginForm = ({ onSwitchToRegister }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
   const { signIn } = useAuth();
 
   const [email, setEmail] = useState('');
@@ -107,7 +107,7 @@ const LoginForm = ({ onSwitchToRegister }) => {
                 href="/forgot-password"
                 className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
               >
-                {t('forgot_password') || '¿Olvidaste tu contraseña?'}
+                {t('forgot_password')}
               </a>
             </div>
 
@@ -130,7 +130,7 @@ const LoginForm = ({ onSwitchToRegister }) => {
 
           {/* FOOTER */}
           <div className="text-center text-sm text-gray-600 dark:text-gray-300">
-            <span>{t('no_account') || '¿No tienes cuenta?'}</span>{' '}
+            <span>{t('no_account')}</span>{' '}
             <button
               type="button"
               onClick={onSwitchToRegister}

@@ -5,7 +5,7 @@ import Recaptcha from '../security/Recaptcha';
 import PasswordFields from '../PasswordFields';
 
 const RegisterForm = ({ onSwitchToLogin }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
   const { signUp } = useAuth();
 
   const [email, setEmail] = useState('');
