@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Input from './Input';
 
 const PasswordFields = ({ onChange, error }) => {
   const { t } = useTranslation('auth');
 
   const passwordRules = [
-    {
-      label: t('password_min_length'),
-      test: (value) => value.length >= 8,
-    },
-    {
-      label: t('password_uppercase'),
-      test: (value) => /[A-Z]/.test(value),
-    },
-    {
-      label: t('password_lowercase'),
-      test: (value) => /[a-z]/.test(value),
-    },
-    {
-      label: t('password_number'),
-      test: (value) => /\d/.test(value),
-    },
-    {
-      label: t('password_special'),
-      test: (value) => /[^A-Za-z0-9]/.test(value),
-    },
+    { label: t('password_min_length'), test: (v) => v.length >= 8 },
+    { label: t('password_uppercase'), test: (v) => /[A-Z]/.test(v) },
+    { label: t('password_lowercase'), test: (v) => /[a-z]/.test(v) },
+    { label: t('password_number'), test: (v) => /\d/.test(v) },
+    { label: t('password_special'), test: (v) => /[^A-Za-z0-9]/.test(v) },
   ];
 
   const [password, setPassword] = useState('');
@@ -43,46 +29,40 @@ const PasswordFields = ({ onChange, error }) => {
 
   useEffect(() => {
     onChange({ password, isValid });
-  }, [password, confirmPassword]);
+  }, [password, confirmPassword, isValid, onChange]);
 
   return (
     <div className="space-y-4">
-      <div>
-        <input
-          type="password"
-          placeholder={t('new_password')}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onBlur={() => setTouched(true)}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+      {/* PASSWORD */}
+      <Input
+        type="password"
+        placeholder={t('new_password')}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        onBlur={() => setTouched(true)}
+      />
 
-      <div>
-        <input
-          type="password"
-          placeholder={t('confirm_password')}
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          onBlur={() => setTouched(true)}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+      {/* CONFIRM PASSWORD */}
+      <Input
+        type="password"
+        placeholder={t('confirm_password')}
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        onBlur={() => setTouched(true)}
+      />
 
+      {/* VALIDATIONS */}
       {touched && (
-        <div>
-          <p className="text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+        <div className="space-y-1">
+          <p className="text-sm font-medium text-app-fg opacity-80">
             {t('password_requirements')}
           </p>
+
           <ul className="space-y-1 text-sm">
             {validations.map((rule) => (
               <li
                 key={rule.label}
-                className={rule.valid ? 'text-green-500' : 'text-gray-400'}
+                className={rule.valid ? 'text-green-600' : 'opacity-50'}
               >
                 • {rule.label}
               </li>
@@ -90,8 +70,8 @@ const PasswordFields = ({ onChange, error }) => {
             <li
               className={
                 password === confirmPassword && password.length
-                  ? 'text-green-500'
-                  : 'text-gray-400'
+                  ? 'text-green-600'
+                  : 'opacity-50'
               }
             >
               • {t('password_match')}
@@ -100,8 +80,9 @@ const PasswordFields = ({ onChange, error }) => {
         </div>
       )}
 
+      {/* ERROR */}
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+        <div className="px-4 py-2 rounded border border-red-400 bg-red-100 text-red-700 text-sm">
           {error}
         </div>
       )}

@@ -1,37 +1,42 @@
 @import "tailwindcss";
 
-/* Dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Theme */
-@theme {
-  --color-background: #ffffff;
-  --color-foreground: #0f172a;
-
-  --color-primary: #3b82f6;
-  --color-secondary: #6b7280;
-
-  --font-sans: system-ui, -apple-system, sans-serif;
+@theme { 
+  --color-app-bg: var(--app-bg);
+  --color-app-fg: var(--app-fg);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
 }
 
-/* Dark overrides */
+:root {
+  /* TEMA CLARO */
+  --app-bg: #fafaf9;          
+  --app-fg: #1c1917;          
+  
+  --primary: #10b981;         /* Verde Esmeralda (emerald-500) */
+  --primary-hover: #059669;   /* Esmeralda un poco más oscuro */
+  
+  --surface: #f5f5f4;         
+  --surface-hover: #e7e5e4;   /* Blanco hueso */
+}
+
 .dark {
-  --color-background: #020617;
-  --color-foreground: #e5e7eb;
+  /* TEMA OSCURO */
+  --app-bg: #0a0a0a;          
+  --app-fg: #f5f5f4;          
+  
+  --primary: #34d399;         /* Verde Menta vibrante (emerald-400) */
+  --primary-hover: #10b981;
+  
+  --surface: #171717;         
+  --surface-hover: #262626;   /* Negro carbón */
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans;
-  }
-}
-
-/* Transiciones SOLO donde tiene sentido */
-@layer utilities {
-  .theme-transition {
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease,
-      border-color 0.3s ease;
+    @apply bg-app-bg text-app-fg transition-colors duration-300;
   }
 }
