@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 
 const Recaptcha = forwardRef(({ onVerify, onExpired }, ref) => {

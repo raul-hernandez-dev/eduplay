@@ -4,7 +4,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const { t } = useTranslation(['common','auth']);
+  const { t } = useTranslation(['common', 'auth']);
   const { user } = useAuth();
 
   return (
@@ -17,16 +17,18 @@ const Home = () => {
         <div className="space-x-4">
           <Link
             to="/login"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium"
+            className="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium"
           >
             {t('auth:login')}
           </Link>
+
           <Link
             to="/register"
-            className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium"
+            className="bg-surface hover:bg-surface-hover text-app-fg px-6 py-3 rounded-lg font-medium"
           >
             {t('auth:register')}
           </Link>
+
         </div>
       )}
     </div>

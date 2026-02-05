@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../../contexts/AuthContext';
 import PasswordFields from '../../../components/ui/PasswordFields';
+import Input from '../../../components/ui/Input';
+import Button from '../../../components/ui/Button';
 
 const Profile = () => {
-  const { t } = useTranslation(['auth','profile']);
+  const { t } = useTranslation(['auth', 'profile']);
   const { user, updateEmail, updatePassword } = useAuth();
 
   const [email, setEmail] = useState(user.email);
@@ -56,16 +58,16 @@ const Profile = () => {
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">
-      <h1 className="text-3xl font-extrabold">
+      <h1 className="text-3xl font-extrabold text-app-fg">
         {t('profile:profile')}
       </h1>
 
       {(error || message) && (
         <div
-          className={`px-4 py-3 rounded ${
+          className={`px-4 py-3 rounded border text-sm ${
             error
-              ? 'bg-red-100 text-red-700 border border-red-400'
-              : 'bg-green-100 text-green-700 border border-green-400'
+              ? 'bg-red-100 text-red-700 border-red-400'
+              : 'bg-green-100 text-green-700 border-green-400'
           }`}
         >
           {error || message}
@@ -73,12 +75,12 @@ const Profile = () => {
       )}
 
       {/* BASIC INFO */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-3">
-        <h2 className="text-xl font-semibold">
+      <div className="bg-surface rounded-xl shadow p-6 space-y-3">
+        <h2 className="text-xl font-semibold text-app-fg">
           {t('profile:account_information')}
         </h2>
 
-        <div className="text-sm text-gray-600 dark:text-gray-300">
+        <div className="text-sm text-app-fg opacity-80 space-y-1">
           <p>
             <strong>{t('profile:id')}:</strong> {user.id}
           </p>
@@ -94,50 +96,44 @@ const Profile = () => {
       </div>
 
       {/* UPDATE EMAIL */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-4">
-        <h2 className="text-xl font-semibold">
+      <div className="bg-surface rounded-xl shadow p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-app-fg">
           {t('change_email')}
         </h2>
 
         <form onSubmit={handleEmailUpdate} className="space-y-3">
-          <input
+          <Input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-              bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-              focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
-          <button
+          <Button
             type="submit"
-            disabled={loading}
-            className="px-4 py-2 rounded-md bg-blue-600 text-white
-              hover:bg-blue-700 disabled:opacity-50"
+            loading={loading}
           >
             {t('update_email')}
-          </button>
+          </Button>
         </form>
       </div>
 
       {/* UPDATE PASSWORD */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-4">
-        <h2 className="text-xl font-semibold">
+      <div className="bg-surface rounded-xl shadow p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-app-fg">
           {t('change_password')}
         </h2>
 
         <form onSubmit={handlePasswordUpdate} className="space-y-4">
           <PasswordFields onChange={setPasswordData} />
 
-          <button
+          <Button
             type="submit"
-            disabled={loading || !passwordData.isValid}
-            className="px-4 py-2 rounded-md bg-blue-600 text-white
-              hover:bg-blue-700 disabled:opacity-50"
+            loading={loading}
+            disabled={!passwordData.isValid}
           >
             {t('update_password')}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

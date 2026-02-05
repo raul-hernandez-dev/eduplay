@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../../contexts/AuthContext';
-import Recaptcha from '../../../components/ui/Recaptcha';
+import Recaptcha from './Recaptcha';
 import PasswordFields from '../../../components/ui/PasswordFields';
+import Input from '../../../components/ui/Input';
+import Button from '../../../components/ui/Button';
 
 const RegisterForm = ({ onSwitchToLogin }) => {
   const { t } = useTranslation('auth');
@@ -57,14 +59,11 @@ const RegisterForm = ({ onSwitchToLogin }) => {
       }
 
       const { error } = await signUp(email, passwordData.password);
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
       setSuccess(true);
     } catch (err) {
       setError(err.message || t('registration_failed'));
-
       recaptchaRef.current?.reset();
       setCaptchaToken(null);
     } finally {
@@ -74,56 +73,51 @@ const RegisterForm = ({ onSwitchToLogin }) => {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-app-bg px-4">
         <div className="max-w-md w-full text-center space-y-4">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-extrabold text-app-fg">
             {t('registration_success')}
           </h2>
-          <p className="text-gray-600 dark:text-gray-300">
+
+          <p className="text-app-fg opacity-80">
             {t('check_email_confirmation')}
           </p>
-          <button
+
+          <Button
+            variant="secondary"
             onClick={onSwitchToLogin}
-            className="text-blue-600 hover:text-blue-500 dark:text-blue-400"
           >
             {t('go_to_login')}
-          </button>
+          </Button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl max-w-md  w-full px-8 py-10 space-y-6">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-            {t('register')}
-          </h2>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-app-bg py-12 px-4">
+      <div className="bg-surface shadow-lg rounded-xl max-w-md w-full px-8 py-10 space-y-6">
+        <h2 className="text-center text-3xl font-extrabold text-app-fg">
+          {t('register')}
+        </h2>
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm">
               {error}
             </div>
           )}
 
           {/* EMAIL */}
-          <div className="rounded-md shadow-sm">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t('email')}
-              className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+          <Input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={t('email')}
+          />
 
-          {/* PASSWORD + CONFIRM PASSWORD */}
+          {/* PASSWORD + CONFIRM */}
           <PasswordFields onChange={setPasswordData} />
 
           <Recaptcha
@@ -132,19 +126,21 @@ const RegisterForm = ({ onSwitchToLogin }) => {
             onExpired={() => setCaptchaToken(null)}
           />
 
-          <button
+          {/* SUBMIT */}
+          <Button
             type="submit"
-            disabled={loading || !passwordData.isValid || !captchaToken}
-            className="group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+            loading={loading}
+            disabled={!passwordData.isValid || !captchaToken}
+            className="w-full"
           >
-            {loading ? t('loading') : t('register')}
-          </button>
+            {t('register')}
+          </Button>
 
-          <div className="text-center">
+          <div className="text-center text-sm text-app-fg">
             <button
               type="button"
               onClick={onSwitchToLogin}
-              className="text-blue-600 hover:text-blue-500 dark:text-blue-400"
+              className="text-primary hover:underline font-medium"
             >
               {t('already_have_account')}
             </button>

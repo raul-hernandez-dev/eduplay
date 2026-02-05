@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../../contexts/AuthContext';
-import Recaptcha from '../../../components/ui/Recaptcha';
+import Recaptcha from './Recaptcha';
+import Input from '../../../components/ui/Input';
+import Button from '../../../components/ui/Button';
 
 const LoginForm = ({ onSwitchToRegister }) => {
   const { t } = useTranslation('auth');
@@ -57,10 +59,10 @@ const LoginForm = ({ onSwitchToRegister }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-app-bg px-4">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl px-8 py-10 space-y-6">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <div className="bg-surface shadow-lg rounded-xl px-8 py-10 space-y-6">
+          <h2 className="text-center text-3xl font-extrabold text-app-fg">
             {t('login')}
           </h2>
 
@@ -74,30 +76,24 @@ const LoginForm = ({ onSwitchToRegister }) => {
             {/* EMAIL */}
             <div>
               <label className="sr-only">{t('email')}</label>
-              <input
+              <Input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t('email')}
-                className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             {/* PASSWORD */}
             <div>
               <label className="sr-only">{t('password')}</label>
-              <input
+              <Input
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={t('password')}
-                className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -105,7 +101,7 @@ const LoginForm = ({ onSwitchToRegister }) => {
             <div className="text-right">
               <a
                 href="/forgot-password"
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm text-primary hover:underline"
               >
                 {t('forgot_password')}
               </a>
@@ -117,24 +113,24 @@ const LoginForm = ({ onSwitchToRegister }) => {
               onExpired={() => setCaptchaToken(null)}
             />
 
-            <button
+            {/* SUBMIT */}
+            <Button
               type="submit"
-              disabled={loading || !captchaToken}
-              className="w-full py-2 px-4 rounded-md text-sm font-medium text-white
-                bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2
-                focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+              loading={loading}
+              disabled={!captchaToken}
+              className="w-full"
             >
-              {loading ? t('loading') : t('login')}
-            </button>
+              {t('login')}
+            </Button>
           </form>
 
           {/* FOOTER */}
-          <div className="text-center text-sm text-gray-600 dark:text-gray-300">
+          <div className="text-center text-sm text-app-fg">
             <span>{t('no_account')}</span>{' '}
             <button
               type="button"
               onClick={onSwitchToRegister}
-              className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              className="text-primary hover:underline font-medium"
             >
               {t('register')}
             </button>
