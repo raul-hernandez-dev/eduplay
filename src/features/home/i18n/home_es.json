@@ -1,0 +1,16 @@
+{
+  "search_placeholder": "Buscar cursos",
+  "no_results": "No se encontraron cursos",
+  "students": "estudiantes",
+  "duration": "{{hours}} horas",
+  "updated": "Actualizado",
+  "results": "resultados",
+  "view_course": "Ver curso",
+  "curriculum": "Currículum",
+  "preview": "Vista previa",
+  "locked": "Contenido premium",
+  "what_you_learn": "Lo que aprenderás",
+  "requirements": "Requisitos",
+  "enroll_now": "Inscribirme ahora",
+  "lesson_preview": "Reproducir vista previa"
+}

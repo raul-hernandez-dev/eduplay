@@ -1,0 +1,16 @@
+{
+  "search_placeholder": "Search courses",
+  "no_results": "No courses found",
+  "students": "students",
+  "duration": "{{hours}} hours",
+  "updated": "Updated",
+  "results": "results",
+  "view_course": "View course",
+  "curriculum": "Curriculum",
+  "preview": "Preview",
+  "locked": "Premium content",
+  "what_you_learn": "What you’ll learn",
+  "requirements": "Requirements",
+  "enroll_now": "Enroll now",
+  "lesson_preview": "Play preview"
+}
