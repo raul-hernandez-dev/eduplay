@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Column 1 */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">
-              Mi Aplicación
+              Calmécac
             </h3>
 
             <p className="text-sm opacity-80">
@@ -61,7 +61,7 @@ const Footer = () => {
 
         <div className="py-6 text-center text-sm opacity-70 border-t border-surface-hover">
           <p>
-            &copy; {year} Mi Aplicación. {t('welcome')}
+            &copy; {year} Calmécac. {t('welcome')}
           </p>
         </div>
       </div>
